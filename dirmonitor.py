@@ -1,52 +1,34 @@
 import os
+import hashlib
 
 class monitor:
     def __init__(self, dir):
-        self.files = []
-        self.dirs = []
+        self.dirs = dict() # maps directory --> list of its (files, hash) tuple
         self.dirSearch(dir)
-        
-        self.printDirs()
-        print("-------------------")
-        self.printFiles()
+        self.printDict()
 
     def dirSearch(self , dir):
-        #print("Searching in" , dir)
-        self.dirs.append(dir) # add current directory to path
         for (dirpath, dirnames, filenames) in os.walk(dir):
-            self.dirs.extend(dirnames)
-            self.files.extend(filenames)
-            for x in dirnames:
-                str = dir + "/"+x
-                self.dirSearch(str)
-            break
+            files = [] # will store all (file,hashes) tuple in this directory
+            for fx in filenames:
+                if fx!=".DS_Store" :# because atom puts this file
+                    path = dirpath + "/" +fx
+                    hash = self.hashMe(path)
+                    tup = (fx , hash)
+                    files.append(tup)
+            self.dirs[dirpath] = files
 
-    def printDirs(self):
-        print("Directories are :")
+    def printDict(self):
         for i in self.dirs:
-            print(i)
+            print("Directory : " , i)
+            print("Files : " , self.dirs[i])
 
-    def printFiles(self):
-        print("Files are :")
-        for i in self.files:
-            print(i)
-#
-# import sys
-# import hashlib
-#
-# # BUF_SIZE is totally arbitrary, change for your app!
-# BUF_SIZE = 65536  # lets read stuff in 64kb chunks!
-#
-# md5 = hashlib.md5()
-# sha1 = hashlib.sha1()
-#
-# with open(sys.argv[1], 'rb') as f:
-#     while True:
-#         data = f.read(BUF_SIZE)
-#         if not data:
-#             break
-#         md5.update(data)
-#         sha1.update(data)
-#
-# print("MD5: {0}".format(md5.hexdigest()))
-# print("SHA1: {0}".format(sha1.hexdigest()))
+    def hashMe(self , file): # reads a file and hash it
+        BLOCK_SIZE = 65536
+        file_hash = hashlib.sha256()
+        with open(file, 'rb') as f:
+            fb = f.read(BLOCK_SIZE)
+            while len(fb) > 0:
+                file_hash.update(fb)
+                fb = f.read(BLOCK_SIZE)
+        return file_hash.hexdigest() # Get the hexadecimal digest of the hash
