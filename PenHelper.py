@@ -8,7 +8,8 @@ def parse():
             # for static testing
             # lp = logparser.parser("log_test.txt")
             lp = logparser.parser(file)
-            lp.printIps()
+            lp.printIps(True)
+            lp.printIps(False)
             break ;
         except FileNotFoundError :
             print("OBAAAA!! : Cannot find this file, Check the name and permissions.")
