@@ -23,7 +23,7 @@ class monitor:
                     hash = self.hashMe(path)
                     tup = (fx , hash)
                     files.append(list(tup))
-            self.dirs[dirpath] = files
+                    self.dirs[dirpath] = files
 
     def printDict(self):
         for i in self.dirs:
@@ -42,9 +42,15 @@ class monitor:
 
     def check(self):
         for dir in self.dirs:
-            #print(dir)
+            # print(dir)
+            if not os.path.isdir(dir):
+                print(dir , " directory is deleted , yalahwaaaaaaaaay")
+                continue
             for file in self.dirs[dir]:
                 path = str(dir) + "/" + str(file[0])
+                if not os.path.isfile(path):
+                    print(dir , " file is deleted , ya5arashy")
+                    continue
                 hash = self.hashMe(path)
                 if file[1] != hash : # a change happened in this file
                     # get current date and time

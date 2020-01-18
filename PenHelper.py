@@ -21,16 +21,19 @@ def parse():
 
 def monitor():
     while True :
-        #file = input("Enter name of folder to monitor\n")
+        file = input("Enter name of folder to monitor\n")
         # static testing
-        file = "TestDirectory"
+        #file = "TestDirectory"
         try :
             interval = int(input("Enter an interval\n"))
             m = dirmonitor.monitor(file,interval)
+            print("Started monitoring " + file)
             break
         except FileNotFoundError :
             print("OBAAAA!! : Cannot find this file, Check the name and permissions.")
 
+# will monitor until main application terminates
+# made for directories in same path of the PenHelper.py file
 monitor()
 
 for i in range(1,100):
