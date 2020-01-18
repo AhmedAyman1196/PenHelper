@@ -1,5 +1,6 @@
 import logparser
 import dirmonitor
+import time
 
 # this method takes access log file , gets all ips and number of their occurrence
 def parse():
@@ -16,15 +17,21 @@ def parse():
             print("OBAAAA!! : Cannot find this file, Check the name and permissions.")
 
 #parse()
+
+
 def monitor():
     while True :
         #file = input("Enter name of folder to monitor\n")
         # static testing
         file = "TestDirectory"
         try :
-            m = dirmonitor.monitor(file)
+            interval = int(input("Enter an interval\n"))
+            m = dirmonitor.monitor(file,interval)
             break
         except FileNotFoundError :
             print("OBAAAA!! : Cannot find this file, Check the name and permissions.")
 
 monitor()
+
+for i in range(1,100):
+    time.sleep(100)

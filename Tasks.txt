@@ -3,9 +3,8 @@
     # add more features (parse more)
 
 2- Directory monitoring [task from lab]
-    # check if change happen
-    # make this check periodic
-    #
+    # check creation
+    # check deletion ( dir , file)
 
 3- It will scan a range of IPs [TCP & UDP]. after gaining the open ports, pass them to Nmap with -sC -sV options and parse the output to the user.
 4- Attack detection [listen to unknown ports and check if there is someone try to connect], send a mail and block the IP [Block using iptc module to add in iptables]
