@@ -7,7 +7,7 @@ import threading
 class monitor:
     def __init__(self, dir,interval):
         self.dirs = dict() # maps directory --> list of its (files, hash) tuple
-        self.interval = interval
+        self.interval = interval # 
         self.dirSearch(dir)
         thread = threading.Thread(target=self.run, args=())
         thread.daemon = True                            # Daemonize thread
@@ -22,7 +22,7 @@ class monitor:
                     path = dirpath + "/" +fx
                     hash = self.hashMe(path)
                     tup = (fx , hash)
-                    files.append(list(tup))
+                    files.append(list(tup)) # cast tuple to list
                     self.dirs[dirpath] = files
 
     def printDict(self):
@@ -41,15 +41,16 @@ class monitor:
         return file_hash.hexdigest() # Get the hexadecimal digest of the hash
 
     def check(self):
+        #print("Checking")
         for dir in self.dirs:
             # print(dir)
             if not os.path.isdir(dir):
-                print(dir , " directory is deleted , yalahwaaaaaaaaay")
+                print(dir , " directory is deleted , leeeeeeeeeeeeh")
                 continue
             for file in self.dirs[dir]:
                 path = str(dir) + "/" + str(file[0])
                 if not os.path.isfile(path):
-                    print(dir , " file is deleted , ya5arashy")
+                    print(dir , " file is deleted , la2aaaaaaaa")
                     continue
                 hash = self.hashMe(path)
                 if file[1] != hash : # a change happened in this file
@@ -63,5 +64,5 @@ class monitor:
     def run(self):
         """ Method that runs forever """
         while True:
+            time.sleep(self.interval) # sleep until the interval pass
             self.check()
-            time.sleep(self.interval)

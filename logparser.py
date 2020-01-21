@@ -23,14 +23,9 @@ class parser:
     def printFile(self):
         print("file is " + self.file)
 
-    def printIps(self , toFile):
+    def printIps(self):
+        res = ""
         print("2y 7aga")
-        if not toFile :
-            for i in self.ipDict :
-                print("IP" , i )
-                print("Appearences : " , str(self.ipDict[i]))
-        else :
-            f = open(self.file+".out","w+")
-            for i in self.ipDict :
-                f.write("IP: " + str(i)+"\n")
-                f.write("Appearences : " +str(self.ipDict[i])+"\n")
+        for i in self.ipDict :
+            res += "IP : " + i +"\nAppearences : " + str(self.ipDict[i]) +"\n"
+        return res 

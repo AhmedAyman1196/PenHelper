@@ -1,19 +1,29 @@
-1- Parse access.log files and extract all information [task from lab] :
+1- Parse access.log files and extract all information :
     Read file --> get ips --> show what are the ips and their appearences
     # add more features (parse more)
 
-2- Directory monitoring [task from lab]
+2- Directory monitoring :
     # check creation --> not done
-    # check deletion --> keeps giving notification until you stop the error
+    # check deletion --> keeps giving notification until you stop 
 
 3- It will scan a range of IPs [TCP & UDP]. after gaining the open ports,
  pass them to Nmap with -sC -sV options and parse the output to the user.
+ 	# and mesh rady 3an el ana 3amlo (bas mekasel) ***** 
+ 	# port open --> nmap on this port (should gather them and send them to nmap 1 time only bas el 7asal)
+ 	# this makes the scanner very very slow and needs threading
+ 	
 
 4- Attack detection [listen to unknown ports and check if there is someone
 try to connect], send a mail and block the IP [Block using iptc module to
 add in iptables]
+	# didnot send the mail
+	# tested on local environment
 
 5- Parse any link and extract all tags, comments, domains, subdomains
 and full URLs from it.
+	# extract all tags 	 --> done (not unique , just all with order)
+	# extract comments	 --> done
+	# extract domains	 --> 
+	# extract subdomains -->
+	# extract Full URLs  --> got all links in <a> tag
 
-Users will have the choice to write any output to a file.
