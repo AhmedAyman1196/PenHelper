@@ -1,4 +1,4 @@
-import socket 
+import socket
 import threading
 import socket
 import iptc
@@ -11,8 +11,8 @@ class detector:
         thread = threading.Thread(target=self.run, args=())
         thread.daemon = True                            # Daemonize thread
         thread.start()
-    	
-       
+
+
     def run(self):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_address = ('127.0.0.1', self.port)
@@ -33,8 +33,3 @@ class detector:
         chain.insert_rule(rule)
 #View rules     :    iptables-legacy -L
 #Flush all rules:    iptables-legacy -F
-
-        
-
-
-

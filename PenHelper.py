@@ -1,9 +1,6 @@
-import logparser
-import dirmonitor
+from Modules import *
+
 import time
-import htmlParser
-import nscanner
-import defender
 import subprocess
 import requests
 # ------------------Access Log parser-----------------------------------------
@@ -54,7 +51,7 @@ def defend():
     detector = defender.detector(port)
     print("Working in the background , kamel zymanta")
     wellknown = [1, 5, 7, 18, 20, 21, 22, 23, 25, 29, 37, 42, 43, 49, 53,
-     69, 70, 79, 80, 103, 108, 109, 110, 115, 118, 119, 137, 139, 143, 
+     69, 70, 79, 80, 103, 108, 109, 110, 115, 118, 119, 137, 139, 143,
      150, 156, 161, 179, 190,194, 197, 389, 396, 443, 444, 445, 458, 546,
      547, 563, 569, 1080]
 
@@ -80,7 +77,7 @@ def hparse():
         res+= "Comments found :\n"
         for i in parser.comments:
             res+= i +"\n"
-        
+
     except requests.exceptions.ConnectionError :
         res = "Failed to connect :("
     except :
@@ -131,6 +128,3 @@ while(True):
         print("An unexpected error have occured , please try again we shokran")
     input("Press any key to continue \n")
     clear()
-
-
-
